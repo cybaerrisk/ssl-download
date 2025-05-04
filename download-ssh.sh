@@ -1,9 +1,11 @@
 #!/bin/bash 
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+source vars.txt
 
-REPO_DIR="/git/ssl-download"
-REPO_URL="github.com:Balilwana-org/ssl-download.git"
+if [ ! -d "$SSL_DESTINATION" ]; then
+    mkdir "$SSL_DESTINATION"
+fi
 
 if [ ! -d "$REPO_DIR" ]; then
     git clone git@"$REPO_URL" "$REPO_DIR"
@@ -13,5 +15,5 @@ else
     git pull origin $(git rev-parse --abbrev-ref HEAD)
 fi
 
-gpg --batch --yes --decrypt --cipher-algo AES254 --passphrase "$CRYPT" --output /git/ssl/ssl-upload/fullchain.crypt /git/ssl-certificate/fullchain.pem
-gpg --batch --yes --decrypt --cipher-algo AES254 --passphrase "$CRYPT" --output /git/ssl/ssl-upload/privkey.crypt /git/ssl-certificate/privkey.pem
+gpg --batch --yes --decrypt --cipher-algo AES256 --passphrase "$CRYPT" --output "$SSL_DESTINATION/fullchain.pem" "$REPO_DIR/fullchain.crypt"
+gpg --batch --yes --decrypt --cipher-algo AES256 --passphrase "$CRYPT" --output "$SSL_DESTINATION/privkey.pem" "$REPO_DIR/privkey.crypt" 

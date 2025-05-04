@@ -1,0 +1,4 @@
+REPO_DIR="/git/ssl-download"
+REPO_URL=change-to-the-ssl-certificate-repository
+CRYPT=please-change-to-a-super-secure-value
+SSL_DESTINATION="/ssl"
