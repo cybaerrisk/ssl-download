@@ -1,7 +1,8 @@
 #!/bin/bash 
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-source vars.txt
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$DIR/vars.txt"
 
 if [ ! -d "$SSL_DESTINATION" ]; then
     mkdir "$SSL_DESTINATION"
