@@ -6,3 +6,5 @@ REPO_URL=change-to-the-ssl-certificate-repository
 CRYPT=please-change-to-a-super-secure-value
 
 SSL_DESTINATION="/ssl"
+
+CRON_JOB="0 2 * * 6 /bin/bash /git/ssl-download/download-ssl.sh"
