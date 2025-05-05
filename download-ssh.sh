@@ -29,8 +29,11 @@ gpg --batch --yes --decrypt --cipher-algo AES256 --passphrase "$CRYPT" --output 
 gpg --batch --yes --decrypt --cipher-algo AES256 --passphrase "$CRYPT" --output "$SSL_DESTINATION/privkey.pem" "$REPO_DIR/privkey.crypt"
 
 #check if cronjob enabled otherwise will create it
-if [ $? -ne 0 ]; then
-  (crontab -l 2>/dev/null; echo "$CRON_JOB") | crontab -
+if ! echo "$CURRENT_CRONTAB" | grep -Fxq "$CRON_JOB"; then
+    {
+        echo "$CURRENT_CRONTAB"
+        echo "$CRON_JOB"
+    } | crontab -
 fi
 
 #check nginx and if pass restart nginx
