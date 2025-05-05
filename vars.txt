@@ -7,4 +7,4 @@ CRYPT=please-change-to-a-super-secure-value
 
 SSL_DESTINATION="/ssl"
 
-CRON_JOB="0 2 * * 6 /bin/bash /git/ssl-download/download-ssl.sh"
+CRON_JOB="0 20 * * 6 /bin/bash /git/ssl-download/download-ssl.sh"
