@@ -32,3 +32,6 @@ gpg --batch --yes --decrypt --cipher-algo AES256 --passphrase "$CRYPT" --output 
 if [ $? -ne 0 ]; then
   (crontab -l 2>/dev/null; echo "$CRON_JOB") | crontab -
 fi
+
+#check nginx and if pass restart nginx
+nginx -t 2>/dev/null && systemctl restart nginx 2>/dev/null
