@@ -26,4 +26,9 @@ fi
 
 #decrypt files
 gpg --batch --yes --decrypt --cipher-algo AES256 --passphrase "$CRYPT" --output "$SSL_DESTINATION/fullchain.pem" "$REPO_DIR/fullchain.crypt"
-gpg --batch --yes --decrypt --cipher-algo AES256 --passphrase "$CRYPT" --output "$SSL_DESTINATION/privkey.pem" "$REPO_DIR/privkey.crypt" 
+gpg --batch --yes --decrypt --cipher-algo AES256 --passphrase "$CRYPT" --output "$SSL_DESTINATION/privkey.pem" "$REPO_DIR/privkey.crypt"
+
+#check if cronjob enabled otherwise will create it
+if [ $? -ne 0 ]; then
+  (crontab -l 2>/dev/null; echo "$CRON_JOB") | crontab -
+fi
