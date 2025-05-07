@@ -1,9 +1,11 @@
+Version=1.0
+
 REPO_DIR="/git/ssl-certificate"
 
 #URL for the .git like github.com:<ORGANIZATION>/ssl-certificate.git
-REPO_URL=change-to-the-ssl-certificate-repository
+REPO_URL="change-to-the-ssl-certificate-repository"
 
-CRYPT=please-change-to-a-super-secure-value
+CRYPT="please-change-to-a-super-secure-value"
 
 SSL_DESTINATION="/ssl"
 
